@@ -36,18 +36,22 @@ uvicorn app:app --reload --port 8000
 
 
 - Response:
-  ```
 { "label": "positive", "confidence": 0.87 }
-```
+
 
 ## Docker
 1. Build:
 ```
-docker build -t reply-classifier .
+
+docker build -t reply-classifier
+
 ```
 
 2. Run:
 ```
+
 docker run -p 8000:8000 reply-classifier
+
 ```
+
 
