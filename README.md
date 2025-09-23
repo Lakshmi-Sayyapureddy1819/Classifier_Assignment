@@ -18,7 +18,8 @@ cd reply-classifier
 
 2. Install requirements:
 
-```pip install -r requirements.txt
+```
+pip install -r requirements.txt
 ```
 
 3. Ensure `model/vectorizer.pkl` and `model/distilbert/` exist.
@@ -33,17 +34,20 @@ uvicorn app:app --reload --port 8000
 - Body:
 { "text": "Looking forward to the demo!" }
 
-text
-- Response:
-{ "label": "positive", "confidence": 0.87 }
 
-text
+- Response:
+  ```
+{ "label": "positive", "confidence": 0.87 }
+```
 
 ## Docker
 1. Build:
+```
 docker build -t reply-classifier .
+```
 
-text
 2. Run:
+```
 docker run -p 8000:8000 reply-classifier
+```
 
