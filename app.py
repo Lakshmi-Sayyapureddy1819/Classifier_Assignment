@@ -4,11 +4,25 @@ from pydantic import BaseModel
 import torch
 import joblib
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
+from huggingface_hub import login
+from dotenv import load_dotenv
+
+# Load environment variables from .env
+load_dotenv()
+
+# Get Hugging Face token from .env
+HF_TOKEN = os.getenv("HF_TOKEN")
+
+if HF_TOKEN:
+    login(token=HF_TOKEN)
+else:
+    raise ValueError("❌ Hugging Face token not found. Please set HF_TOKEN in .env")
+
 
 # Load artifacts
 vectorizer = joblib.load('model/vectorizer.pkl')
-tokenizer = DistilBertTokenizerFast.from_pretrained('model/distilbert')
-transformer_model = DistilBertForSequenceClassification.from_pretrained('model/distilbert')
+tokenizer = DistilBertTokenizerFast.from_pretrained('NirvanaLohitha/my-classifier-model')
+transformer_model = DistilBertForSequenceClassification.from_pretrained('NirvanaLohitha/my-classifier-model')
 transformer_model.eval()
 
 class PredictRequest(BaseModel):
